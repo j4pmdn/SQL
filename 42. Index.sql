@@ -76,5 +76,19 @@ ON [Sales].[SalesOrderDetail] ([CarrierTrackingNumber]);
 
 -- logical reads 69
 
-
 -- tốc độ nó đã tăng bao nhiêu lần -> 17 lần
+
+
+-- Bật hiển thị thống kế về tài nguyên I/O
+SET STATISTICS IO ON;
+SELECT *
+FROM [Person].[Address]
+WHERE [AddressLine1] = '7484 Roundtree Drive';
+
+-- Bật hiển thị thống kế về tài nguyên I/O
+SET STATISTICS IO OFF;
+
+-- logical reads 9
+
+CREATE INDEX idx_AddressLine1
+ON [Person].[Address] ([AddressLine1])
